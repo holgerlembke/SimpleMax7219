@@ -11,13 +11,13 @@ SimpleMax7219
     
     This is slow and really ressource independant. 
     
-### Usage    
+## Usage    
 
-    Create a object 
+Create a object 
     
-    ```
-    simplemax7219 disp(wemosD8,wemosD7,wemosD6); // data clock load
-    ```
+```
+simplemax7219 disp(wemosD8,wemosD7,wemosD6); // data clock load
+```
     
     Call begin() to init the object
     

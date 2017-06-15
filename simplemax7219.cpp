@@ -71,8 +71,6 @@ void simplemax7219::set(byte x, byte y, bool on) {
       y=y-1;
   }  
   
-  byte mask;
-
   if (on) {
     regSetMax7219(x + 1, shadow[x] | (1 << y));
   } else {
@@ -80,16 +78,36 @@ void simplemax7219::set(byte x, byte y, bool on) {
   }
 }
 
+boolean simplemax7219::get(byte x, byte y) {
+  // mapping due to wiring
+  if (y==0) {
+      y=7;
+  } else {
+      y=y-1;
+  }  
+  
+  return shadow[x] & (1 << y);
+}
+
+//=============================================================================
+byte bitflipdings(byte b) {
+  if (b & 1) {
+    return (b >> 1)+0b10000000;
+  } else {
+    return (b >> 1);
+  }
+}
+
 //=============================================================================
 void simplemax7219::setpattern(byte b1, byte b2, byte b3, byte b4, byte b5, byte b6, byte b7, byte b8) {
-  regSetMax7219(1, b1);
-  regSetMax7219(2, b2);
-  regSetMax7219(3, b3);
-  regSetMax7219(4, b4);
-  regSetMax7219(5, b5);
-  regSetMax7219(6, b6);
-  regSetMax7219(7, b7);
-  regSetMax7219(8, b8);
+  regSetMax7219(1, bitflipdings(b1));
+  regSetMax7219(2, bitflipdings(b2));
+  regSetMax7219(3, bitflipdings(b3));
+  regSetMax7219(4, bitflipdings(b4));
+  regSetMax7219(5, bitflipdings(b5));
+  regSetMax7219(6, bitflipdings(b6));
+  regSetMax7219(7, bitflipdings(b7));
+  regSetMax7219(8, bitflipdings(b8));
 }
 
 

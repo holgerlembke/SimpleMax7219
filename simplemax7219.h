@@ -20,6 +20,7 @@ class simplemax7219
     void brightness(byte br);
     // set/unset bit on [0..7][0..7]
     void set(byte x, byte y, bool on); 
+	boolean get(byte x, byte y);
     void setpattern(byte b1, byte b2, byte b3, byte b4, byte b5, byte b6, byte b7, byte b8);
   private:
     byte max7219clock = 0;

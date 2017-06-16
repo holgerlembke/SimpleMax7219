@@ -86,7 +86,13 @@ boolean simplemax7219::get(byte x, byte y) {
       y=y-1;
   }  
   
-  return shadow[x] & (1 << y);
+  if (shadow[x] & (1 << y)) {
+   return true;
+  } else {
+   return false;
+  }
+  
+  // return shadow[x] & (1 << y);
 }
 
 //=============================================================================
